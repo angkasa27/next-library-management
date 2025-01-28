@@ -26,12 +26,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
-        const isPasswordFValid = await compare(
+        const isPasswordValid = await compare(
           credentials.password.toString(),
           user[0].password
         );
 
-        if (!isPasswordFValid) {
+        if (!isPasswordValid) {
           return null;
         }
 
