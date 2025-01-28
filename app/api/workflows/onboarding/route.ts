@@ -1,8 +1,8 @@
+import { serve } from "@upstash/workflow/nextjs";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
-import { sendEmail } from "@/lib/workflow";
-import { serve } from "@upstash/workflow/nextjs";
 import { eq } from "drizzle-orm";
+import { sendEmail } from "@/lib/workflow";
 
 type UserState = "non-active" | "active";
 
@@ -22,9 +22,7 @@ const getUserState = async (email: string): Promise<UserState> => {
     .where(eq(users.email, email))
     .limit(1);
 
-  if (user.length === 0) {
-    return "non-active";
-  }
+  if (user.length === 0) return "non-active";
 
   const lastActivityDate = new Date(user[0].lastActivityDate!);
   const now = new Date();
@@ -47,8 +45,8 @@ export const { POST } = serve<InitialData>(async (context) => {
   await context.run("new-signup", async () => {
     await sendEmail({
       email,
-      subject: "Welcome to our platform",
-      message: `Hello ${fullName}, Welcome to our platform`,
+      subject: "Welcome to the platform",
+      message: `Welcome ${fullName}!`,
     });
   });
 
@@ -72,7 +70,7 @@ export const { POST } = serve<InitialData>(async (context) => {
         await sendEmail({
           email,
           subject: "Welcome back!",
-          message: `Hey ${fullName}, welcome back!`,
+          message: `Welcome back ${fullName}!`,
         });
       });
     }
