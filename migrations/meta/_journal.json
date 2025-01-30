@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1737949150812,
-      "tag": "0000_black_ravenous",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1738149290769,
-      "tag": "0001_goofy_wrecking_crew",
+      "when": 1738244702082,
+      "tag": "0000_windy_solo",
       "breakpoints": true
     }
   ]

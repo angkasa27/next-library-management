@@ -29,7 +29,7 @@ import { useRouter } from "next/navigation";
 interface Props<T extends FieldValues> {
   schema: ZodType<T>;
   defaultValues: T;
-  onSubmit: (data: T) => Promise<{ success: boolean; error?: string }>;
+  onSubmit: (data: T) => Promise<{ success: boolean; message?: string }>;
   type: "SIGN_IN" | "SIGN_UP";
 }
 
@@ -62,7 +62,7 @@ const AuthForm = <T extends FieldValues>({
     } else {
       toast({
         title: `Error ${isSignIn ? "signing in" : "signing up"}`,
-        description: result.error,
+        description: result.message,
         variant: "destructive",
       });
     }

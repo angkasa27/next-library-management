@@ -18,10 +18,10 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     .limit(1);
 
   if (!bookDetails) redirect("/404");
-  console.log(bookDetails);
+
   return (
     <>
-      <BookOverview {...bookDetails} userId={session?.user?.id} />
+      <BookOverview {...bookDetails} userId={session?.user?.id!} />
       <div className="book-details">
         <div className="flex-[1.5]">
           <section className="flex flex-col gap-7">

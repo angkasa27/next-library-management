@@ -29,13 +29,13 @@ export const signInWithCredentials = async (
     });
 
     if (result?.error) {
-      return { success: false, error: result.error };
+      return { success: false, message: result.error };
     }
 
     return { success: true };
   } catch (error) {
     console.log(error, "Signin error");
-    return { success: false, error: "Signin error" };
+    return { success: false, message: "Signin error" };
   }
 };
 
@@ -54,7 +54,7 @@ export const signUp = async (params: AuthCredentials) => {
     .limit(1);
 
   if (existingUser.length > 0) {
-    return { success: false, error: "User already exists" };
+    return { success: false, message: "User already exists" };
   }
 
   const hashedPassword = await hash(password, 10);
@@ -81,6 +81,6 @@ export const signUp = async (params: AuthCredentials) => {
     return { success: true };
   } catch (error) {
     console.log(error, "Signup error");
-    return { success: false, error: "Signup error" };
+    return { success: false, message: "Signup error" };
   }
 };
