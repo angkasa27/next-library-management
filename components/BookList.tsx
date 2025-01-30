@@ -9,6 +9,7 @@ interface Props {
 }
 
 const BookList = ({ title, books, containerClassName }: Props) => {
+  if (books.length < 3) return <></>;
   return (
     <section className={clsx(containerClassName)}>
       <h2 className="font-bebas-neue text-4xl text-light-100">{title}</h2>
